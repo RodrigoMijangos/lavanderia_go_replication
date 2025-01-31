@@ -1,7 +1,6 @@
 package lavanderia
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -13,14 +12,21 @@ func Do_after_init() {
 	do_petition_for_water(200)
 }
 
+type Payload map[string]string
+
+/*
+	status: 0 -> lavar
+	status: 1 -> centrifugar
+	status: 2 -> enjuagar
+	status: 3 -> secar
+	status: 4 -> terminado
+
+*/
+
 func Run() {
 	s := gin.Default()
 
-	s.GET("/main", func(ctx *gin.Context) {
-		payload, _ := json.Marshal((map[string]int{"message": 0}))
-
-		ctx.JSON(http.StatusOK, payload)
-	})
+	s.GET("/servicio/:quantity", handleService)
 
 	srv2 := &http.Server{
 		Addr:         ":4001",

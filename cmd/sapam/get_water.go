@@ -59,7 +59,7 @@ func sendWater(quantity int, c *gin.Context, writer gin.ResponseWriter) {
 			return
 		default:
 			deliver := map[string]int{"water": 10}
-			println("Sending Water: 10u")
+			//println("Sending Water: 10u")
 			jsonData, err := json.Marshal(deliver)
 
 			if err != nil {
@@ -72,7 +72,7 @@ func sendWater(quantity int, c *gin.Context, writer gin.ResponseWriter) {
 				writer.Flush()
 			}
 		}
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(1000 * time.Millisecond)
 	}
 
 	// for i := 1; i <= quantity; i++ {
