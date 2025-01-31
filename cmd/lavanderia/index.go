@@ -28,6 +28,8 @@ func Run() {
 
 	s.GET("/servicio/:quantity", handleService)
 
+	s.POST("/transfer-data/", transferDataHandler)
+
 	srv2 := &http.Server{
 		Addr:         ":4001",
 		Handler:      s,
